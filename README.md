@@ -6,7 +6,11 @@ guassdata_2.m和guasstest.m--可视化分类器的测试函数
 main.m--主函数  
 partenjudge.m--根据Fisher.m的分类器输出判断新样本的类别  
 pcadata.m--提取图像特征降维  
-sorted--给特征值排序  
+sorted.m--给特征值排序  
+findFace.m--检测人脸返回人脸区域  
+lowdimesion.m--将待测样本集按照原样本集的正交基降维  
+newface.m--创建新的样本  
+skin.m--根据肤色找到可能的人脸区域  
 ## Neural_networks 建立三层神经网络构建自编码器
 Lena.bmp--输入图像  
 imgsplit.m--分割图像  
