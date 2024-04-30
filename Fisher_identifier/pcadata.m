@@ -1,18 +1,16 @@
-function [low_dimen,eigdatabase] = pcadata(database,dimension)
+function [low_dimen,eigdatabase,u] = pcadata(database,dimension)
 %将d维特征向量组成的数据库压缩维dimension维特征向量组成的数据库
 %database输入d维数据库
 %dimension压缩后的维度
 %low_dimen压缩后的规范正交基向量组
 %eigdatabase返回的dimension维特征向量数据库存储图像在dimension维度下的投影
+%u样本集均值向量
 %dimension要降维的维度大小,dimension小于等于category_num
 
 %类别数量
 category_num=size(database,2);%"2"返回列数
 
-if(category_num<dimension)
-    fprintf('pcadata():dimension > category_num!')
-    return
-end
+
 
 %求所有数据的中心向量
 sigma_x=zeros(size(database{1,1}{1,1}));%每个样本维数相同
@@ -29,6 +27,11 @@ all_num=sample_num+all_num;
     end
 end
 u=sigma_x./all_num;
+
+if(all_num<dimension)
+    fprintf('pcadata():dimension > category_num!')
+    return
+end
 
 %求所有去均值样本构成的矩阵
 X=zeros(size(database{1,1}{1,1},1),all_num);

@@ -1,10 +1,12 @@
+%main.m
 database_img=Database_img('.\facedata');
-[low_dimen,database_img]=pcadata(database_img,10);
-category_num=size(database_img,2);
-%测试图片 挑取数据库中第7个人的第九张图片
-testimg=database_img{1,7}{1,9};
+testbase_img=Database_img('.\testdata');
+%降低后的维数
+dimen_num=10;
+[low_dimen,database_img,u]=pcadata(database_img,dimen_num);
+testbase_img=lowdimension(testbase_img,low_dimen,dimen_num,u);
 [w,w0]=Fisher(database_img);
-parten=partenjudge(w,w0,testimg);
+parten=partenjudge(w,w0,testbase_img{1,2}{1,2});
 fprintf('输入图片识别结果为标签为%d的人脸\n',parten)
 
 
